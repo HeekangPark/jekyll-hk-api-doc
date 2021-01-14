@@ -1,0 +1,74 @@
+.toc-container {
+    position: relative;
+    
+    .toc {
+        position: absolute;
+        top: 0;
+        
+        padding: {
+            top: 1em;
+            bottom: 1em;
+            left: 2em;
+            right: 2em;
+        }
+        
+        .toc-title {
+            font-weight: bold;
+        }
+    
+        .toc-item {
+            margin: {
+                top: 1em;
+            }
+            line-height: 1.5;
+    
+            .toc-api-method {
+                padding: {
+                    top: 0.2em;
+                    bottom: 0.2em;
+                    left: 0.3em;
+                    right: 0.3em;
+                }
+                margin: {
+                    right: 5px;
+                }
+                border-radius: 0.2em;
+                color: #ffffff;
+                font-family: "Ubuntu Mono", "Nanum Gothic Coding", monospace;
+                
+                &.toc-api-method-get {
+                    background-color: #3884ff;
+                }
+    
+                &.toc-api-method-post {
+                    background-color: #26cb7c;
+                }
+    
+                &.toc-api-method-put {
+                    background-color: #f77d05;
+                }
+    
+                &.toc-api-method-delete {
+                    background-color: #ff4642;
+                }
+    
+                &.toc-api-method-patch {
+                    background-color: #03d1eb;
+                }
+    
+                &.toc-api-method-head {
+                    background-color: #a44eed;
+                }
+    
+                &.toc-api-method-options {
+                    background-color: #ffd139;
+                }
+            }
+
+            .toc-api-name {
+                color: inherit;
+                text-decoration: inherit;
+            }
+        }
+    }
+}

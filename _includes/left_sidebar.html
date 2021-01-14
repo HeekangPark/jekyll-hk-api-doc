@@ -1,0 +1,7 @@
+<div class="left-sidebar hidden-when-sm-width">
+    {% assign sorted_api_book = api_book | sort %}
+    {% for api_group in sorted_api_book %}
+    {% assign api_group_name = api_group[0] | downcase %}
+    <a class="left-sidebar-item {% if api_group_name == filename %}active{% endif %}" href="{{ site.baseurl }}/{{ api_group_name }}">{{ api_group_name | capitalize }}</a>
+    {% endfor %}
+</div>

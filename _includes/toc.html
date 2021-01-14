@@ -1,0 +1,17 @@
+<div class="toc-container">
+    <div class="toc">
+        <p class="toc-title">Contents</p>
+        {% for api in yaml.apis %}
+        <p class="toc-item"><span class="toc-api-method toc-api-method-{{ api.method | downcase }}">{{ api.method | upcase }}</span><a class="toc-api-name" href="#api-{{ forloop.index }}">{{ api.name }}</a></p>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    var toc = $(".left-sidebar-content-toc-container .content-toc-container .toc-container .toc");
+    $(".left-sidebar-content-toc-container .content-toc-container").scroll(function() {
+        toc.css("top", $(this).scrollTop() + "px");
+    })
+})
+</script>

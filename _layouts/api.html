@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+    {% include head.html %}
+
+    <body>
+        {% assign api_book = site.data %}
+        {% assign filename = page.title | downcase %}
+        {% assign yaml = api_book[filename] %}
+
+        <div class="top-navbar-container">
+            {% include top_navbar.html %}
+
+            <div class="left-sidebar-content-toc-container">
+                {% include left_sidebar.html %}
+                <div class="content-toc-container">
+                    {% include api_main_content.html %}
+                    {% include toc.html %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

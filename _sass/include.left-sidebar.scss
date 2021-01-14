@@ -1,0 +1,30 @@
+.left-sidebar {
+    padding: {
+        top: 1em;
+        bottom: 1em;
+        left: 2em;
+        right: 2em;
+    }
+    background-color: #f8f9fa;
+    overflow-y: auto;
+
+    .left-sidebar-item {
+        display: block;
+        font-weight: 700;
+        color: #333;
+        text-decoration: none;
+        margin: {
+            top: 1em;
+        }
+
+        &:first-child {
+            margin: {
+                top: 0;
+            }
+        }
+
+        &.active {
+            color: #007bff
+        }
+    }
+}

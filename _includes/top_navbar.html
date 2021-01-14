@@ -1,0 +1,9 @@
+<div class="top-navbar">
+    <p class="title">{{ site.title | upcase }} v{{ site.version }}</p>
+    <p class="menu-btn"><i class="fas fa-bars"></i></p>
+</div>
+<script>
+$(".top-navbar-container .top-navbar .menu-btn i").click(function() {
+    $(".top-navbar-container .left-sidebar-content-toc-container .left-sidebar").toggleClass("hidden-when-sm-width");
+})
+</script>

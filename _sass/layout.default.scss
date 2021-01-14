@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+$screen-width-lg: 1200px;
+$screen-width-md: 800px;
+$screen-width-sm: 600px;
+
+html, body, div, span, p, nav,
+h1, h2, h3, h4, h5, h6, strong, small, b, u, i,
+ul, ol, li, a, img, figure,
+table, thead, tbody, tfoot, th, tr, td,
+pre, blockquote {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+html {
+    font-family: "Nanum Gothic", sans-serif;
+	word-break: break-all;
+}
+
+pre, code {
+    font-family: "Ubuntu Mono", "Nanum Gothic Coding", monospace;
+}
+
+html, body {
+    height: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    overflow-y: hidden;
+}
+
+.top-navbar-container {
+    height: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow-y: hidden;
+
+    @import "include.top-navbar";
+
+    .left-sidebar-content-toc-container {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+
+        overflow-y: hidden;
+
+        @import "include.left-sidebar";
+
+        .content-toc-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            overflow-y: auto;
+
+            @import "include.api_main_content";
+            @import "include.toc";
+        }
+
+        @media screen and (max-width: $screen-width-lg) {
+            .content-toc-container {
+                grid-template-columns: 1fr;
+
+                .toc-container {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: $screen-width-md) {
+        .left-sidebar-content-toc-container {
+            grid-template-columns: 180px 1fr;
+        }
+    }
+
+    @media screen and (max-width: $screen-width-sm) {
+        .top-navbar {
+            grid-template-columns: 1fr auto;
+
+            .menu-btn {
+                display: block;
+            }
+        }
+
+        .left-sidebar-content-toc-container {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+
+            .left-sidebar {
+                grid-row: 1/2;
+                grid-column: 1/2;
+
+                &.hidden-when-sm-width {
+                    display: none;
+                }
+            }
+
+            .content-toc-container {
+                grid-row: 2/3;
+                grid-column: 1/2;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $screen-width-md) {
+    html {
+        font-size: 0.8em;
+    }
+}
