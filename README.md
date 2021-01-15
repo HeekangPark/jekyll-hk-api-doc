@@ -1,7 +1,6 @@
 # jekyll-hk-api-doc
 
 A Simple API Doc with YAML powered by Jekyll
-
 ## Installation
 
 1. Add the line below to your Jekyll site's `Gemfile`:
@@ -10,19 +9,72 @@ A Simple API Doc with YAML powered by Jekyll
 gem "jekyll-hk-api-doc"
 ```
 
-2. Add the line below to your Jekyll site's `_config.yml`:
+2. Install the gem with either one of the command lines below.
+
+    $ bundle install
+    $ gem install jekyll-hk-api-doc
+
+3. Update your Jekyll site's `_config.yml`. Keys listed below are used by `jekyll-hk-api-doc` theme, so please fill them up:
 
 ```yaml
 theme: jekyll-hk-api-doc
+assets: /assets
+data_dir: _api
+collections_dir: documents
+collections:
+  api_book_pages:
+    output: true
+    permalink: /:name
+defaults:
+  - scope:
+      path: ""
+      type: "api_book_page"
+    values:
+      layout: "api"
+      
+title: [Your Jekyll site's title]
+description: [Your Jekyll site's description]
+baseurl: [Your Jekyll site's base url. If base url not exists, it should be ""(empty string)]
+author: [Author's name]
+email: [Author's email]
+
+api_baseurl: [API baseurl. This will be prepended on every API's url.]
+version: [API version]
 ```
 
-3. Create data directory `_api` and update `_config.yml`:
+4. Create directories: `_api/`, `assets/api/examples/`
+  - `_api/` : Directory where yaml files will be stored
+  - `assets/api/examples/` : Directory where the response example(in json) of apis's will be stored
+
+5. Write yaml in `_api/`. Available keys for yaml is listed below:
 
 ```yaml
-data_dir: _api
+name: [Name of the API sets]
+description: [Description of the API sets]
+baseurl: [base_url will be prepended to all APIs in the set.]
+apis:
+  - name: [Name of the API]
+    url: [URL of the API. The full URL will be (api_baseurl at _config.yml) + (baseurl at yaml) + (url).]
+    method: [Request method. Available values are "get", "post", "put", "delete", "patch", "head", "options".]
+    description: [Description of the API]
+    params:
+      body: [Type of parameters. Available values are "header", "path", "query", "body".]
+        - name: [Name of the parameter]
+          is_required: [Available values are "true", "false". If "true", "required" tag will be displayed for the parameter. If "false", "optional" will be displayed for the parameter.]
+          type: [Type of the parameter]
+          description: [Description of the parameter]
+    response:
+      success:
+        - status_code: [Http response code. If "200", "Success" will be displayed.]
+          description: [Description of the response]
+          example: [Response example. For design purpose, I seperate yaml and example(examples are loaded via ajax, and highlight.js is applied to them). You only have to write the name of the json file in assets/api/examples/ directory(without the extension .json)]
+      fail:
+        - status_code: [Http response code. If "400", "Bad Request" will be displayed. If "401", "Unauthorized" will be displayed. If "403", "Forbidden" will be displayed. If "404", "Not Found" will be displayed.]
+          description: [Description of the response]
+          example: [Response example. For design purpose, I seperate yaml and example(examples are loaded via ajax, and highlight.js is applied to them). You only have to write the name of the json file in assets/api/examples/ directory(without the extension .json)]
 ```
 
-4. Write yaml in the data directory. Example:
+Here's an example.
 
 ```yaml
 name: Auth
@@ -34,7 +86,6 @@ apis:
     method: post
     description: |
       Issue <code>access token</code> and <code>refresh token</code>
-      * Currently, the api is using <code>http</code> and it does have vulnerability of sending plain password, but it will soon be updated to <code>https</code>.
       * <code>access token</code>s will be expired 10 minutes after they are issued.
       * <code>refresh token</code>s will be expired 2 weeks after they are issued.
     params:
@@ -57,87 +108,9 @@ apis:
             - Either one of <code>id</code> or <code>pw</code> is not included in the request.
             - <code>id</code> is not registered.
             - <code>id</code> and <code>pw</code> are not matching.
-  - name: ID Duplication Check
-    url: /id-duplicate-check
-    method: get
-    description: Checks if new <code>id</code> is duplicated or not
-    params:
-      query:
-        - name: id
-          is_required: true,
-          type: string
-          description: ID
-    response: 
-      success:
-        - status_code: 200
-          description: <code>id</code> is not duplicated(good to use)
-      fail: 
-        - status_code: 400
-          description: <code>id</code> is duplicated(not good to use)
-  - name: Sign Up
-    url: /signup
-    method: post
-    description: Create a new account.
-    params:
-      body: 
-        - name: id
-          is_required: true
-          type: string
-          description: ID
-        - name: pw
-          is_required: true
-          type: string
-          description: (plain) Password
-        - name: nickname
-          is_required: true
-          type: string
-          description: Nickname
-        - name: email
-          is_required: true
-          type: string
-          description: Email
-        - name: age
-          is_required: true
-          type: int
-          description: Age
-    response: 
-      success:
-        - status_code: 200
-          description: New account has been successfully created.
-      fail: 
-        - status_code: 400
-          description: |
-            - Either one of <code>id</code>, <code>pw</code>, <code>nickname</code>, <code>email</code> or <code>age</code> is not included in the request or not a proper type.
-            - <code>id</code> already registered(duplicated id)
-  - name: Refresh Token
-    url: /refresh
-    method: get
-    description: |
-      Re-issue an access token with <code>refresh token</code>
-    params:
-      header: 
-        - name: x-access-token
-          is_required: true
-          type: string
-          description: (expired) access token
-        - name: x-refresh-token
-          is_required: true
-          type: string
-          description: refresh token
-    response: 
-      success:
-        - status_code: 200
-          example: auth-refreshtoken-200
-      fail: 
-        - status_code: 401
-          description: |
-            - <code>x-access-token</code> or <code>x-refresh-token</code> is not provided.
-            - <code>x-access-token</code> or <code>x-refresh-token</code> is not valid(not issued by the server, or modified).
-            - <code>x-refresh-token</code> is banned.
-            - <code>x-access-token</code> and <code>x-refresh-token</code> are not matching.
 ```
 
-5. Execute the python code below with Python 3:
+6. Execute the python code below with Python 3:
 
 ```python
 import os
@@ -158,35 +131,17 @@ yamls = sorted([os.path.splitext(x)[0] for x in os.listdir(yaml_path) if x.endsw
 for i, yaml in enumerate(yamls):
     with open(os.path.join(html_path, f"{yaml}.html"), "w") as html:
         html.write("---\n")
-        
-        if i == 0:
-            redirect_from = "redirect_from:\n    - /\n    - docs/\n"
-            html.write(redirect_from)
-
         html.write("---\n")
 ```
 
-6. Execute:
+The code above creates html files in `documents/_api_book_page` corresponding to yaml files in `_api`.
 
-    $ bundle
+7. Test:
 
-Or install it yourself as:
-
-    $ gem install jekyll-hk-api-doc
-
+    $ bundle exec jekyll serve
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/HeekangPark/jekyll-hk-api-doc.
-
-## Development
-
-To set up your environment to develop this theme, run `bundle install`.
-
-Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
-
-When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
-To add a custom directory to your theme-gem, please edit the regexp in `jekyll-hk-api-doc.gemspec` accordingly.
-
 ## License
 
 The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

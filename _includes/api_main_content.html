@@ -10,7 +10,7 @@
             <div class="api-name-area" id="api-{{ forloop.index }}">
                 <h2 class="api-name">{{ api.name }}</h2>
                 <p class="api-method api-method-{{ api.method | downcase }}">{{ api.method | upcase }}</p>
-                <p class="api-url-area"><span class="api-baseurl">{{ site.api_baseurl | escape }}</span><span class="api-url">{{ yaml.base_url | escape }}{{ api.url | escape }}</span></p>
+                <p class="api-url-area"><span class="api-baseurl">{{ site.api_baseurl | escape }}</span><span class="api-url">{{ yaml.baseurl | escape }}{{ api.url | escape }}</span></p>
             </div>
             
             <div class="api-description">{{ api.description | newline_to_br }}</div>
@@ -170,8 +170,6 @@
                                     {{ item.status_code }}
                                     {% if item.status_code == 400 %}
                                     : Bad Request
-                                    {% elsif item.status_code == 401 %}
-                                    : Unauthorized
                                     {% elsif item.status_code == 401 %}
                                     : Unauthorized
                                     {% elsif item.status_code == 403 %}

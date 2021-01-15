@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-hk-api-doc"
-  spec.version       = "0.2.0"
+  spec.version       = "1.0.0"
   spec.authors       = ["Heekang Park"]
   spec.email         = ["park.heekang33@gmail.com"]
 
