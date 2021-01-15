@@ -3,18 +3,20 @@
 A Simple API Doc with YAML powered by Jekyll
 ## Installation
 
-1. Add the line below to your Jekyll site's `Gemfile`:
+1. Add the line below to your Jekyll site's `Gemfile`.
 
 ```ruby
 gem "jekyll-hk-api-doc"
 ```
 
-2. Install the gem with either one of the command lines below.
+2. Install the gem with either one of commands below.
 
-    $ bundle install
-    $ gem install jekyll-hk-api-doc
+```bash
+$ bundle install
+$ gem install jekyll-hk-api-doc
+```
 
-3. Update your Jekyll site's `_config.yml`. Keys listed below are used by `jekyll-hk-api-doc` theme, so please fill them up:
+3. Update your Jekyll site's `_config.yml`. Keys listed below are used by `jekyll-hk-api-doc` theme.
 
 ```yaml
 theme: jekyll-hk-api-doc
@@ -44,7 +46,7 @@ version: [API version]
 
 4. Create directories: `_api/`, `assets/api/examples/`
   - `_api/` : Directory where yaml files will be stored
-  - `assets/api/examples/` : Directory where the response example(in json) of apis's will be stored
+  - `assets/api/examples/` : Directory where the response examples(in json) of apis's will be stored
 
 5. Write yaml in `_api/`. Available keys for yaml is listed below:
 
@@ -74,9 +76,8 @@ apis:
           example: [Response example. For design purpose, I seperate yaml and example(examples are loaded via ajax, and highlight.js is applied to them). You only have to write the name of the json file in assets/api/examples/ directory(without the extension .json)]
 ```
 
-Here's an example.
-
 ```yaml
+# Example
 name: Auth
 description: APIs for authentication
 base_url: /api/auth
@@ -110,7 +111,7 @@ apis:
             - <code>id</code> and <code>pw</code> are not matching.
 ```
 
-6. Execute the python code below with Python 3:
+6. Execute the python code below with Python 3, which creates html files in `documents/_api_book_page` corresponding to yaml files in `_api`.
 
 ```python
 import os
@@ -134,11 +135,12 @@ for i, yaml in enumerate(yamls):
         html.write("---\n")
 ```
 
-The code above creates html files in `documents/_api_book_page` corresponding to yaml files in `_api`.
-
 7. Test:
 
-    $ bundle exec jekyll serve
+```bash
+$ bundle exec jekyll serve
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/HeekangPark/jekyll-hk-api-doc.
