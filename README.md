@@ -1,4 +1,4 @@
-# jekyll-hk-api-doc
+# jekyll-hk-api-doc [v1.0.1]
 
 A Simple API Doc with YAML powered by Jekyll
 ## Installation
