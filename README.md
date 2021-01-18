@@ -1,6 +1,9 @@
 # jekyll-hk-api-doc [v1.1.0]
 
 A Simple API Doc with YAML powered by Jekyll
+
+Demopage: [https://2020swchallenge-moai.github.io/docs](https://2020swchallenge-moai.github.io/docs)
+
 ## Installation
 
 1. Add the line below to your Jekyll site's `Gemfile`.
