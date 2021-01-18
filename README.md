@@ -147,3 +147,18 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/Heekan
 ## License
 
 The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Version Log
+
+### v1.0.0
+
+Accidently commited. Currently yanked.
+
+### v1.0.1
+
+First version.
+
+### v1.1.0
+
+- support list(<ul>, <ol>) in description keys
+- support markdown in description keys

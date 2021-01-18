@@ -15,6 +15,57 @@
 
     box-sizing: border-box;
 
+    ul,
+    ol {
+        margin: {
+            bottom: 1em;
+        }
+        display: table;
+        word-break: break-all;
+
+        li {
+            list-style: none;
+            display: table-row;
+            //line-height: $line-height;
+
+            &::before {
+                display: table-cell;
+                text-align: right;
+                word-break: keep-all;
+                padding: {
+                    right: 0.3em;
+                }
+            }
+
+            ol, ul {
+                margin: {
+                    bottom: 0;
+                    left: 1em;
+                }
+            }
+        }
+    }
+
+    ol {
+        counter-reset: listcounter 0;
+
+        >li {
+            &::before {
+                content: counter(listcounter) ".";
+                counter-increment: listcounter;
+            }
+        }
+    }
+
+    ul {
+        >li {
+            &::before {
+                content: "\2022";
+                font-weight: bold;
+            }
+        }
+    }
+
     .yaml-name-area {
         padding: {
             top: 0.2em;

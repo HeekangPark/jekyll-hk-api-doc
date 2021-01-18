@@ -1,7 +1,7 @@
 <div class="main-content">
     <div class="yaml-name-area">
         <h1 class="yaml-name">{{ yaml.name }}</h1>
-        <p class="yaml-description">{{ yaml.description | newline_to_br }}</p>
+        <p class="yaml-description">{{ yaml.description | markdownify }}</p>
     </div>
 
     <div class="apis">
@@ -13,7 +13,7 @@
                 <p class="api-url-area"><span class="api-baseurl">{{ site.api_baseurl | escape }}</span><span class="api-url">{{ yaml.baseurl | escape }}{{ api.url | escape }}</span></p>
             </div>
             
-            <div class="api-description">{{ api.description | newline_to_br }}</div>
+            <div class="api-description">{{ api.description | markdownify }}</div>
 
             <div class="request-response-container">
                 <div class="btns">
@@ -44,7 +44,7 @@
                                         {% endif %}
                                     </td>
                                     <td class="param-datatype-col"><p class="param-datatype">{{ param.type }}</p></td>
-                                    <td class="param-description-col"><p class="param-description">{{ param.description | newline_to_br }}</p></td>
+                                    <td class="param-description-col"><p class="param-description">{{ param.description | markdownify }}</p></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -72,7 +72,7 @@
                                         {% endif %}
                                     </td>
                                     <td class="param-datatype-col"><p class="param-datatype">{{ param.type }}</p></td>
-                                    <td class="param-description-col"><p class="param-description">{{ param.description | newline_to_br }}</p></td>
+                                    <td class="param-description-col"><p class="param-description">{{ param.description | markdownify }}</p></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -100,7 +100,7 @@
                                         {% endif %}
                                     </td>
                                     <td class="param-datatype-col"><p class="param-datatype">{{ param.type }}</p></td>
-                                    <td class="param-description-col"><p class="param-description">{{ param.description | newline_to_br }}</p></td>
+                                    <td class="param-description-col"><p class="param-description">{{ param.description | markdownify }}</p></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -128,7 +128,7 @@
                                         {% endif %}
                                     </td>
                                     <td class="param-datatype-col"><p class="param-datatype">{{ param.type }}</p></td>
-                                    <td class="param-description-col"><p class="param-description">{{ param.description | newline_to_br }}</p></td>
+                                    <td class="param-description-col"><p class="param-description">{{ param.description | markdownify }}</p></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -150,7 +150,7 @@
                                 </p>
     
                                 {% if item.description %}
-                                <p class="response-description">{{ item.description | newline_to_br }}</p>
+                                <p class="response-description">{{ item.description | markdownify }}</p>
                                 {% endif %}
     
                                 {% if item.example %}
@@ -180,7 +180,7 @@
                                 </p>
     
                                 {% if item.description %}
-                                <p class="response-description">{{ item.description | newline_to_br }}</p>
+                                <p class="response-description">{{ item.description | markdownify }}</p>
                                 {% endif %}
     
                                 {% if item.example %}
