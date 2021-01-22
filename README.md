@@ -163,5 +163,5 @@ First version.
 
 ### v1.1.0
 
-- support list(<ul>, <ol>) in description keys
+- support list(`<ul>`, `<ol>`) in description keys
 - support markdown in description keys
