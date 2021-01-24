@@ -153,19 +153,27 @@ The theme is available as open source under the terms of the [MIT License](https
 
 ## Version Log
 
-### v1.0.0
+### v1.0
+
+#### v1.0.0
 
 Accidently commited. Currently yanked.
 
-### v1.0.1
+#### v1.0.1
 
 First version.
 
-### v1.1.0
+### v1.1
+
+#### v1.1.0
 
 - support list(`<ul>`, `<ol>`) in description keys
 - support markdown in description keys
 
-### v1.1.1
+#### v1.1.1
 
 - update css (add some margin under `<p>` tags)
+
+#### v1.1.2
+
+- bug fix (remove side-effect of updates at v1.1.1)
