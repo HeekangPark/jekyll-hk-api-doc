@@ -165,3 +165,7 @@ First version.
 
 - support list(`<ul>`, `<ol>`) in description keys
 - support markdown in description keys
+
+### v1.1.1
+
+- update css (add some margin under `<p>` tags)
