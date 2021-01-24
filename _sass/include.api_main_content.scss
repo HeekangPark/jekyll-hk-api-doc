@@ -66,6 +66,18 @@
         }
     }
 
+    p {
+        margin: {
+            bottom: 1em;
+        }
+
+        &:last-child {
+            margin: {
+                bottom: 0;
+            }
+        }
+    }
+
     .yaml-name-area {
         padding: {
             top: 0.2em;
